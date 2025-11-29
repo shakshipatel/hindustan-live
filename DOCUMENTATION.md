@@ -11,842 +11,307 @@
 
 # Part A - Design Document
 
-## 1. Wireframe / Layout Sketch
-
-```
-┌──────────────────────────────────────────────────────────────────────────┐
-│                              HEADER                                       │
-│  ☰  [हि] हिन्दुस्तान    | फोटो | वीडियो | शहर चुनें | ई-पेपर | [🔍]     │
-├──────────────────────────────────────────────────────────────────────────┤
-│  होम | राज्य | देश | क्रिकेट | लाइव स्कोर | मनोरंजन | बिजनेस | ...  → │
-├──────────────────────────────────────────────────────────────────────────┤
-│                         [ADVERTISEMENT BANNER]                            │
-├────────────────────────────────────────────┬─────────────────────────────┤
-│                                            │                             │
-│           HERO SECTION                     │     SIDE STORIES            │
-│    ┌──────────────────────────┐           │  ┌───┐ Title           Time │
-│    │                          │           │  ├───┤ Title           Time │
-│    │     Main Featured        │           │  ├───┤ Title           Time │
-│    │         Image            │           │  └───┘ Title           Time │
-│    │                          │           │                             │
-│    │  [राष्ट्रीय]              │           │                             │
-│    │  Main Headline           │           │                             │
-│    └──────────────────────────┘           │                             │
-├────────────────────────────────────────────┴─────────────────────────────┤
-│  [Filter Chips: सबसे पहले | LIVE | बड़ी खबर | राजनीति | क्राइम | ...]   │
-├──────────────────────────────────────────────┬───────────────────────────┤
-│                                              │                           │
-│         MAIN CONTENT (2/3)                   │    SIDEBAR (1/3)          │
-│  ┌──────────────────────────────────────┐   │  ┌─────────────────────┐  │
-│  │ CATEGORY SECTION: देश               │   │  │ ट्रेंडिंग न्यूज़    │  │
-│  │  ┌────────────┐  ┌─────────────────┐ │   │  │ 1. Article Title    │  │
-│  │  │            │  │ ताज़ा खबरें    │ │   │  │ 2. Article Title    │  │
-│  │  │   MAIN     │  │ ┌───┐ Title    │ │   │  │ 3. Article Title    │  │
-│  │  │   CARD     │  │ ├───┤ Title    │ │   │  │ 4. Article Title    │  │
-│  │  │            │  │ ├───┤ Title    │ │   │  │ 5. Article Title    │  │
-│  │  │            │  │ ├───┤ Title    │ │   │  └─────────────────────┘  │
-│  │  └────────────┘  │ └───┘ Title    │ │   │                           │
-│  │  ┌─────┐ ┌─────┐ └─────────────────┘ │   │  ┌─────────────────────┐  │
-│  │  │     │ │     │ (2 bottom cards)    │   │  │   STOCK WIDGET      │  │
-│  │  └─────┘ └─────┘                     │   │  │   ट्रेडिंग स्टॉक    │  │
-│  └──────────────────────────────────────┘   │  │   Stock prices...   │  │
-│                                              │  └─────────────────────┘  │
-│  ┌──────────────────────────────────────┐   │                           │
-│  │ CATEGORY SECTION: खेल                │   │  ┌─────────────────────┐  │
-│  │ (Same layout as above)               │   │  │   HOROSCOPE MINI    │  │
-│  └──────────────────────────────────────┘   │  │   राशिफल            │  │
-│                                              │  │   ♈ ♉ ♊ ♋          │  │
-│  ┌──────────────────────────────────────┐   │  │   ♌ ♍ ♎ ♏          │  │
-│  │ CATEGORY SECTION: मनोरंजन            │   │  │   ♐ ♑ ♒ ♓          │  │
-│  │ (Same layout as above)               │   │  └─────────────────────┘  │
-│  └──────────────────────────────────────┘   │                           │
-│                                              │  ┌─────────────────────┐  │
-│  ┌──────────────────────────────────────┐   │  │   ई-पेपर            │  │
-│  │ HOROSCOPE SECTION                    │   │  │   Subscribe CTA     │  │
-│  │ आज का राशिफल पढ़ने के लिए राशि चुनें │   │  └─────────────────────┘  │
-│  │ ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ │   │                           │
-│  │ │ ♈ │ │ ♉ │ │ ♊ │ │ ♋ │ │ ♌ │ │ ♍ │ │   │                           │
-│  │ └───┘ └───┘ └───┘ └───┘ └───┘ └───┘ │   │                           │
-│  └──────────────────────────────────────┘   │                           │
-│                                              │                           │
-│  ┌──────────────────────────────────────┐   │                           │
-│  │ WEB STORIES SECTION                  │   │                           │
-│  │ [Tab: सभी | मनोरंजन | ट्रेंडिंग |...] │   │                           │
-│  │ ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐  │   │                           │
-│  │ │    │ │    │ │    │ │    │ │    │  │   │                           │
-│  │ │9:16│ │9:16│ │9:16│ │9:16│ │9:16│  │   │                           │
-│  │ │    │ │    │ │    │ │    │ │    │  │   │                           │
-│  │ └────┘ └────┘ └────┘ └────┘ └────┘  │   │                           │
-│  └──────────────────────────────────────┘   │                           │
-├──────────────────────────────────────────────┴───────────────────────────┤
-│                              FOOTER                                       │
-│   About | Contact | Privacy Policy | Terms                               │
-│   Copyright © 2025 Hindustan                                             │
-└──────────────────────────────────────────────────────────────────────────┘
-```
-
-## 2. Screenshots - Actual Implementation
+## 1. Screenshots - Actual Implementation
 
 Below are screenshots from different views of the implemented LiveHindustan clone:
 
-### Full Page Layout
+| Screenshot                                        | Description                                                     |
+| ------------------------------------------------- | --------------------------------------------------------------- |
+| ![Full Layout](./screenshots/layout.png)          | **Full Page Layout** - Header, hero, category sections, sidebar |
+| ![Hero Section](./screenshots/hero.png)           | **Hero Section** - Featured story with side stories list        |
+| ![Breaking News](./screenshots/breaking-news.png) | **Breaking News** - Horizontal scrolling news ticker            |
+| ![More News](./screenshots/more-news.png)         | **More News** - Grid layout for additional articles             |
 
-The complete page layout showing header, hero section, category sections, and sidebar.
+## 2. Layout Structure
 
-![Full Layout](./screenshots/layout.png)
-
-### Hero Section
-
-The main featured story with large image, headline, and side stories list.
-
-![Hero Section](./screenshots/hero.png)
-
-### Breaking News Section
-
-Horizontal scrolling breaking news ticker with latest headlines.
-
-![Breaking News](./screenshots/breaking-news.png)
-
-### More News Section
-
-Grid layout for additional news articles with cards.
-
-![More News](./screenshots/more-news.png)
-
----
+```
+┌─────────────────────────────────────────────────────┐
+│  HEADER: Logo + Nav + Search                        │
+├─────────────────────────────────────────────────────┤
+│  HERO: Main Story (2/3) │ Side Stories (1/3)        │
+├─────────────────────────────────────────────────────┤
+│  FILTER CHIPS: Scrollable category tags             │
+├────────────────────────────────┬────────────────────┤
+│  MAIN CONTENT (2/3)            │  SIDEBAR (1/3)     │
+│  - Category Sections           │  - Trending News   │
+│  - Horoscope                   │  - Stock Widget    │
+│  - Web Stories                 │  - Horoscope Mini  │
+├────────────────────────────────┴────────────────────┤
+│  FOOTER                                             │
+└─────────────────────────────────────────────────────┘
+```
 
 ## 3. Layout Decisions
 
-### Column Structure: 3-Column Grid System
+| Element          | Desktop         | Tablet | Mobile  |
+| ---------------- | --------------- | ------ | ------- |
+| Main Content     | 2/3 width       | Full   | Full    |
+| Sidebar          | 1/3 width       | Full   | Full    |
+| Category Section | 3:2 (main:side) | 1:1    | Stacked |
 
-| Element              | Desktop                   | Tablet     | Mobile     |
-| -------------------- | ------------------------- | ---------- | ---------- |
-| **Main Content**     | 2/3 width (lg:col-span-2) | Full width | Full width |
-| **Sidebar**          | 1/3 width (lg:col-span-1) | Full width | Full width |
-| **Category Section** | 3:2 ratio (main:side)     | 1:1        | Stacked    |
+**Why This Layout?**
 
-#### Why This Layout?
+- **2/3 + 1/3 Split**: F-pattern reading, visual priority for main content
+- **Category Section**: 1 main card + 5 side cards + 2 bottom cards
+- **Mobile-First**: Stacked layout on mobile, grid on desktop
 
-1. **2/3 + 1/3 Split**:
-
-   - Follows the LiveHindustan original design
-   - Main content gets visual priority (F-pattern reading)
-   - Sidebar provides supplementary info without overwhelming
-
-2. **Category Section (1 Main + 5 Side + 2 Bottom)**:
-
-   - **Main Card (Left - 3 cols)**: Draws attention to featured story
-   - **Side List (Right - 2 cols)**: Quick scannable headlines with thumbnails
-   - **Bottom Row (2 cards)**: Additional stories without cluttering
-   - Uses `justify-between` to evenly distribute side articles vertically
-
-3. **Highlighting Top Stories**:
-
-   - Red category badge on main image
-   - Larger image with gradient overlay
-   - Bold typography with red accent colors
-   - Time/date stamps for freshness
-
-4. **Mobile-First Responsive**:
-   ```
-   Mobile (< 768px):  Single column, stacked layout
-   Tablet (768-1024): 2 columns for cards, sidebar below
-   Desktop (> 1024):  Full 3-column layout
-   ```
+---
 
 ## 4. Data-Fetching Strategy
 
-### Current Implementation: Static JSON + Client-Side Fetching
+### Chosen Method: Static Site Generation (SSG) with `generateStaticParams`
+
+| Method                 | Pros               | Cons                | Our Choice    |
+| ---------------------- | ------------------ | ------------------- | ------------- |
+| `getStaticProps`       | Fast, SEO-friendly | Pages Router only   | ❌            |
+| `getServerSideProps`   | Fresh data         | Slower, server load | ❌            |
+| `generateStaticParams` | Fast, App Router   | Rebuild for updates | ✅ **CHOSEN** |
+| ISR                    | Best of both       | Complex setup       | ⚡ Future     |
+
+### Why SSG?
 
 ```javascript
-// Strategy 1: Static Import (Used for homepage)
-import articles from "../data/articles.json";
-
-// Strategy 2: API Route for Dynamic Data
-// app/api/news/route.js - Proxy to NewsAPI
-export async function GET() {
-  const res = await fetch(`https://newsapi.org/v2/top-headlines?...`);
-  return Response.json(data);
+// app/article/[id]/page.js
+export async function generateStaticParams() {
+  return articles.map((a) => ({ id: a.id }));
 }
-
-// Strategy 3: Client-Side Fetching with Loading States
-const ClientArticles = () => {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/news").then(...);
-  }, []);
-};
 ```
 
-### Why This Approach?
+**Justification:**
 
-| Method                | Pros                                    | Cons                  | When to Use              |
-| --------------------- | --------------------------------------- | --------------------- | ------------------------ |
-| **Static JSON**       | Fast, no network latency, works offline | Stale data            | Development, fallback    |
-| **API Route (Proxy)** | Hides API keys, CORS handling           | Server dependency     | Production with real API |
-| **Client-Side Fetch** | Dynamic updates, user interactions      | Loading states needed | Real-time sections       |
+1. **Performance**: Pre-built HTML → fastest load times
+2. **SEO**: Search engines get fully rendered content
+3. **Cost**: No server computation per request
+4. **News Fit**: Articles don't change after publishing
 
-### Tradeoffs Considered:
+**Trade-offs:**
 
-1. **SSR vs CSR**:
-
-   - Chose **hybrid**: Static shell with client-side dynamic sections
-   - Better SEO (JSON-LD schema included)
-   - Faster initial paint
-
-2. **API Proxy Pattern**:
-
-   - NewsAPI doesn't allow client-side calls (CORS)
-   - API key stays secure on server
-   - Can add caching layer later
-
-3. **Fallback Data**:
-   - 20 mock articles in `articles.json`
-   - Graceful degradation if API fails
-   - Hindi content matching LiveHindustan
+- ✅ Lightning fast, CDN cacheable, perfect SEO
+- ⚠️ Requires rebuild for new articles
 
 ---
 
 # Part B - Code Explanation
 
-## 1. Component Architecture
+## 1. Dynamic Routing
 
-```
-components/
-├── Nav.js              # Main header with logo, categories, search
-├── Hero.js             # Featured story with side stories list
-├── Card.js             # Reusable article card (3 variants)
-├── CategorySection.js  # Section with main + side + bottom layout
-├── FilterChips.js      # Horizontal scrolling filter tags
-├── Sidebar.js          # Trending, stocks, horoscope widgets
-├── Horoscope.js        # Full horoscope section with zodiac
-├── StockWidget.js      # Live stock ticker widget
-├── WebStories.js       # Instagram-style web stories
-├── SkeletonCard.js     # Loading placeholder
-├── ClientArticles.js   # Dynamic article fetching
-├── Footer.js           # Site footer
-└── Layout.js           # Page wrapper (deprecated - using App Router)
-```
-
-### Component Details:
-
-#### 1. **Nav.js** (Navigation Header)
+### Article Pages: `/article/[id]`
 
 ```javascript
-// Key Features:
-- Sticky header with shadow
-- Hamburger menu for mobile
-- Hindi logo "हि हिन्दुस्तान"
-- Horizontal scrolling category tabs with arrows
-- Quick links: फोटो, वीडियो, शहर चुनें, ई-पेपर, साइन इन
-- Search input with rounded design
+// app/article/[id]/page.js
+
+// Pre-generate all article pages at build
+export async function generateStaticParams() {
+  return articles.map((a) => ({ id: a.id }));
+}
+
+// Dynamic metadata for SEO
+export async function generateMetadata({ params }) {
+  const article = articles.find((a) => a.id === params.id);
+  return {
+    title: `${article.title} | हिंदुस्तान`,
+    description: article?.summary,
+  };
+}
+
+// Page component
+export default function ArticlePage({ params }) {
+  const article = articles.find((a) => a.id === params.id);
+  if (!article) return <NotFound />;
+  return <ArticleContent article={article} />;
+}
 ```
 
-#### 2. **Hero.js** (Featured Section)
+## 2. Image Optimization
 
 ```javascript
-// Props: { article, sideArticles }
-// Layout: 2/3 main story + 1/3 side list
-// Features:
-- Full-width image with gradient overlay
-- Red category badge
-- Side articles with thumbnails and timestamps
+// next.config.js
+images: {
+  domains: ["picsum.photos"];
+}
+
+// Usage with Next.js Image
+import Image from "next/image";
+<Image
+  src={article.image || "/placeholder.svg"}
+  alt={article.title}
+  fill
+  priority // For above-fold images
+  className="object-cover"
+/>;
 ```
 
-#### 3. **Card.js** (Article Cards)
+**Benefits:** Lazy loading, responsive sizes, WebP conversion, 30-50% smaller files
+
+## 3. TailwindCSS Styling
 
 ```javascript
-// Variants: "default" | "horizontal" | "small"
-// Default: Full card with image, title, summary, date
-// Horizontal: Thumbnail + title side by side
-// Small: Compact image + title only
+// Responsive grid
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-// Fallback handling:
-const img = article.image || "/placeholder.svg";
+// Hover effects
+<Image className="group-hover:scale-105 transition duration-300" />
+
+// Text truncation
+<h3 className="line-clamp-2">Long title...</h3>
+
+// Custom scrollbar hide
+.scrollbar-hide::-webkit-scrollbar { display: none; }
 ```
 
-#### 4. **CategorySection.js** (Category Layout)
+**Color Scheme:** Primary Red `#dc2626`, Gray backgrounds, White cards
+
+## 4. SEO Implementation
 
 ```javascript
-// Layout: lg:grid-cols-5
-// - Main article: lg:col-span-3 (60%)
-// - Side list: lg:col-span-2 (40%) with justify-between
-// - Bottom row: 2 cards in separate grid
+// app/layout.js - Global metadata
+export const metadata = {
+  title: "हिंदुस्तान - Hindi News",
+  description: "हिंदी न्यूज़, ताज़ा खबर...",
+};
 
-// Key Code:
-<div className="lg:col-span-2 flex flex-col justify-between">
-  {sideArticles.map((a) => (...))}
-</div>
+// JSON-LD Schema
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  headline: article.title,
+  datePublished: article.publishedAt,
+};
 ```
 
-#### 5. **Sidebar.js** (Right Sidebar)
+## 5. Component Architecture
 
-```javascript
-// Widgets included:
-1. Trending News (numbered list)
-2. Stock Widget (live prices)
-3. Mini Horoscope (12 zodiac signs grid)
-4. Advertisement placeholder
-5. E-Paper CTA button
-```
+| Component            | Purpose                              |
+| -------------------- | ------------------------------------ |
+| `Nav.js`             | Header with logo, categories, search |
+| `Hero.js`            | Featured story + side stories        |
+| `Card.js`            | Article card (3 variants)            |
+| `CategorySection.js` | Main + side + bottom layout          |
+| `Sidebar.js`         | Trending, stocks, horoscope          |
+| `SkeletonCard.js`    | Loading placeholder                  |
 
-#### 6. **Horoscope.js** (Zodiac Section)
-
-```javascript
-// Data:
-const zodiacSigns = [
-  { name: "मेष", nameEn: "Aries", icon: "♈", dates: "..." },
-  // ... 12 signs
-];
-
-// Layout: 6-column grid for first row, 4-column for mini widget
-```
-
-#### 7. **WebStories.js** (Stories Carousel)
-
-```javascript
-// Features:
-- Category tabs (सभी वेब स्टोरी, मनोरंजन, etc.)
-- 9:16 aspect ratio cards (Instagram style)
-- Horizontal scroll with arrows
-- Gradient overlay with title
-- Play icon on hover
-```
-
-## 2. Data Model
-
-### Article Object Schema:
+## 6. Data Model
 
 ```typescript
 interface Article {
-  id: string; // Unique identifier "1", "2", etc.
+  id: string;
   title: string; // Hindi headline
-  summary: string; // Short description (2-3 lines)
-  image: string; // Image URL (picsum.photos or real)
-  publishedAt: string; // ISO 8601 timestamp
-  content: string; // Full article body
-  source: string; // Source label (राष्ट्रीय, खेल, etc.)
-  category: string; // Category (देश, मनोरंजन, खेल, बिज़नेस)
+  summary: string; // 2-3 lines
+  image: string; // URL or null
+  publishedAt: string; // ISO 8601
+  content: string; // Full body
+  source: string; // राष्ट्रीय, खेल, etc.
+  category: string; // देश, मनोरंजन, खेल
 }
 ```
 
-### Sample Article:
+## 7. Challenges & Solutions
 
-```json
-{
-  "id": "1",
-  "title": "प्रधानमंत्री ने किसानों के लिए नई योजना का ऐलान किया",
-  "summary": "प्रधानमंत्री ने आज एक नई योजना की घोषणा की जो देश भर के किसानों को लाभ पहुंचाएगी।",
-  "image": "https://picsum.photos/seed/news1/800/500",
-  "publishedAt": "2025-11-28T09:30:00Z",
-  "content": "Full article content here...",
-  "source": "राष्ट्रीय",
-  "category": "देश"
-}
-```
+| Challenge                    | Solution                               |
+| ---------------------------- | -------------------------------------- |
+| Pages vs App Router conflict | Removed `pages/`, used App Router only |
+| Image domain blocked         | Added to `next.config.js` domains      |
+| Hindi date formatting        | `toLocaleDateString("hi-IN")`          |
+| Scrollbar visible            | Custom `.scrollbar-hide` utility       |
+| Uneven side articles         | `flex flex-col justify-between`        |
 
-### Category Distribution:
+## 8. Future Improvements
 
-- **देश (National)**: 5 articles
-- **मनोरंजन (Entertainment)**: 6 articles
-- **खेल (Sports)**: 6 articles
-- **बिज़नेस (Business)**: 3 articles
-
-## 3. Challenges Faced & Solutions
-
-### Challenge 1: Pages vs App Router Conflict
-
-**Problem**: Next.js threw error when both `pages/` and `app/` directories existed.
-
-```
-Conflicting app and page file was found, please remove one:
-  pages/index.js
-  app/page.js
-```
-
-**Solution**: Removed `pages/` directory completely, migrated to App Router.
-
-### Challenge 2: Image Domain Configuration
-
-**Problem**: External images from `picsum.photos` blocked by Next.js.
-
-```
-Error: Invalid src prop on `next/image`, hostname not configured
-```
-
-**Solution**: Added domain to `next.config.js`:
-
-```javascript
-images: {
-  domains: ["picsum.photos", "via.placeholder.com"],
-}
-```
-
-### Challenge 3: Hindi Date Formatting
-
-**Problem**: Displaying dates in Hindi locale format.
-**Solution**: Used `toLocaleDateString` with `hi-IN` locale:
-
-```javascript
-new Date(publishedAt).toLocaleDateString("hi-IN", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
-```
-
-### Challenge 4: Horizontal Scroll Without Visible Scrollbar
-
-**Problem**: Category tabs needed horizontal scroll but scrollbar looked ugly.
-**Solution**: Added custom Tailwind utility:
-
-```css
-/* globals.css */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-```
-
-### Challenge 5: Matching LiveHindustan Layout Exactly
-
-**Problem**: Side articles had uneven spacing, didn't fill height.
-**Solution**: Used Flexbox with `justify-between`:
-
-```javascript
-<div className="flex flex-col justify-between h-full">
-  {sideArticles.map(...)}
-</div>
-```
-
-## 4. Potential Improvements (Given More Time)
-
-1. **Real-Time Updates**: WebSocket for breaking news
-2. **Search Functionality**: Full-text search with Algolia/Elasticsearch
-3. **User Authentication**: Login for personalized news feed
-4. **Dark Mode**: Theme toggle with system preference detection
-5. **PWA Support**: Offline reading, push notifications
-6. **Infinite Scroll**: Load more articles on scroll
-7. **Comments System**: User engagement features
-8. **Share Functionality**: Social media sharing buttons
-9. **Reading Progress**: Progress bar for long articles
-10. **Bookmark Feature**: Save articles for later
+1. Real-time updates with WebSocket
+2. Full-text search
+3. Dark mode
+4. PWA support
+5. Infinite scroll
 
 ---
 
 # Part C - Testing & Edge Cases
 
-## 1. Test Cases Overview
+## 1. Edge Cases Handled
 
-### File: `__tests__/ClientArticles.test.js`
+| Case               | Implementation                          |
+| ------------------ | --------------------------------------- |
+| **No image**       | `article.image \|\| "/placeholder.svg"` |
+| **Empty articles** | Show "कोई खबर उपलब्ध नहीं है"           |
+| **Long titles**    | `line-clamp-2` with ellipsis            |
+| **Loading state**  | Skeleton cards with `animate-pulse`     |
+| **API error**      | Error message + retry button            |
+| **Invalid date**   | Fallback to "अभी"                       |
+
+## 2. Test Example
 
 ```javascript
-test("shows skeletons while loading and then renders articles", async () => {
-  const mock = [
-    {
-      id: "t1",
-      title: "Test article",
-      summary: "sum",
-      image: null, // Testing missing image
-      publishedAt: new Date().toISOString(),
-      content: "c",
-    },
-  ];
-  global.fetch.mockResolvedValueOnce({ json: async () => mock });
+// __tests__/ClientArticles.test.js
+test("shows skeletons while loading", async () => {
+  global.fetch.mockResolvedValueOnce({
+    json: async () => [{ id: "1", title: "Test", image: null }],
+  });
 
   render(<ClientArticles />);
-
-  // Verify loading state
   expect(document.querySelectorAll(".animate-pulse").length).toBeGreaterThan(0);
 
-  // Verify content appears
-  await waitFor(() =>
-    expect(screen.getByText("Test article")).toBeInTheDocument()
-  );
+  await waitFor(() => expect(screen.getByText("Test")).toBeInTheDocument());
 });
 ```
 
-## 2. Edge Case Handling
-
-### Case 1: Article Without Image
-
-**Scenario**: API returns article with `image: null` or missing image field.
-
-**Implementation**:
-
-```javascript
-// Card.js
-const img = article.image || "/placeholder.svg";
-
-// Hero.js
-<Image
-  src={article.image || "/placeholder.svg"}
-  alt={article.title}
-  ...
-/>
-```
-
-**Visual Result**: Falls back to a placeholder image, no broken image icons.
-
-### Case 2: API Returns No Articles
-
-**Scenario**: Empty articles array from API or data source.
-
-**Implementation**:
-
-```javascript
-// CategorySection.js
-if (!articles || articles.length === 0) return null;
-
-// Home page (page.js)
-{
-  top ? (
-    <Hero article={top} sideArticles={sideArticles} />
-  ) : (
-    <div className="text-center py-12 bg-white rounded-lg">
-      <p className="text-gray-500">कोई खबर उपलब्ध नहीं है।</p>
-    </div>
-  );
-}
-```
-
-**Visual Result**: Shows "कोई खबर उपलब्ध नहीं है" (No news available) message.
-
-### Case 3: Long Article Titles
-
-**Scenario**: Extremely long headlines that could break layout.
-
-**Implementation**:
-
-```javascript
-// Using Tailwind's line-clamp utility
-<h3 className="line-clamp-2 font-bold">{article.title}</h3>
-
-// CSS behavior:
-// - Truncates text after 2 lines
-// - Adds ellipsis (...)
-// - Prevents layout overflow
-```
-
-**Visual Result**: Text truncated with "..." after 2 lines.
-
-### Case 4: Loading State (Data Fetching)
-
-**Scenario**: User sees loading state while data is being fetched.
-
-**Implementation**:
-
-```javascript
-// SkeletonCard.js - Loading placeholder
-export default function SkeletonCard() {
-  return (
-    <div className="bg-white rounded shadow-sm overflow-hidden animate-pulse">
-      <div className="h-48 bg-gray-200" />
-      <div className="p-4">
-        <div className="h-4 bg-gray-200 rounded w-3/4 mb-3" />
-        <div className="h-3 bg-gray-200 rounded w-full mb-2" />
-        <div className="h-3 bg-gray-200 rounded w-5/6" />
-      </div>
-    </div>
-  );
-}
-
-// ClientArticles.js - Using skeleton while loading
-{loading ? (
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-    {[1, 2, 3, 4, 5, 6].map((i) => (
-      <SkeletonCard key={i} />
-    ))}
-  </div>
-) : (
-  // Render actual articles
-)}
-```
-
-**Visual Result**: Animated gray placeholder cards during loading.
-
-### Case 5: API Fetch Error
-
-**Scenario**: Network error or API returns error response.
-
-**Implementation**:
-
-```javascript
-// ClientArticles.js
-const [error, setError] = useState(null);
-
-useEffect(() => {
-  fetch("/api/news")
-    .then((res) => res.json())
-    .then((data) => setArticles(data))
-    .catch((err) => {
-      console.error("Failed to fetch:", err);
-      setError("समाचार लोड करने में विफल। कृपया पुनः प्रयास करें।");
-    })
-    .finally(() => setLoading(false));
-}, []);
-
-// Render error state
-{
-  error && (
-    <div className="text-center py-8 bg-red-50 rounded-lg">
-      <p className="text-red-600">{error}</p>
-      <button onClick={refetch} className="mt-2 text-blue-600">
-        पुनः प्रयास करें
-      </button>
-    </div>
-  );
-}
-```
-
-### Case 6: Invalid Date Format
-
-**Scenario**: `publishedAt` field has invalid or missing date.
-
-**Implementation**:
-
-```javascript
-// Safe date formatting
-const formatDate = (dateString) => {
-  try {
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "अभी";
-    return date.toLocaleDateString("hi-IN", {
-      day: "numeric",
-      month: "short",
-    });
-  } catch {
-    return "अभी"; // Fallback: "Just now"
-  }
-};
-```
-
-## 3. Running Tests
+## 3. Run Tests
 
 ```bash
-# Run all tests
-npm test
-
-# Run with coverage
-npm test -- --coverage
-
-# Run specific test file
-npm test ClientArticles.test.js
+npm test                    # Run all
+npm test -- --coverage      # With coverage
 ```
 
 ---
 
 # Part D - AI Use & Reflection
 
-## 1. Parts Done Using AI (GitHub Copilot)
+## 1. AI-Assisted Parts
 
-### A. Component Boilerplate Generation
+| Area                  | AI Contribution                |
+| --------------------- | ------------------------------ |
+| Component boilerplate | Initial structure, imports     |
+| Tailwind classes      | Complex responsive patterns    |
+| Data fetching         | useEffect patterns, API routes |
+| Mock data             | Hindi article content          |
+| Jest setup            | Test configuration             |
 
-**Used AI For**:
+## 2. AI Mistakes & Corrections
 
-- Initial component structure and imports
-- JSX skeleton with Tailwind classes
-- Common patterns (Card variants, Sidebar widgets)
+| AI Suggested             | Problem           | My Fix               |
+| ------------------------ | ----------------- | -------------------- |
+| Both `pages/` and `app/` | Route conflict    | App Router only      |
+| `<img>` tag              | No optimization   | `next/image`         |
+| Wrong import paths       | Resolution failed | Fixed relative paths |
+| No "use client"          | useState failed   | Added directive      |
 
-**Example AI-Generated**:
+## 3. Custom Work Beyond AI
 
-```javascript
-// AI generated the base structure
-export default function Card({ article, variant = "default" }) {
-  const img = article.image || "/placeholder.svg";
+- LiveHindustan exact styling (red #dc2626, bordered logo)
+- `justify-between` for even spacing
+- Hindi localization (`hi-IN` locale)
+- JSON-LD structured data
+- Edge case handling
 
-  if (variant === "horizontal") {
-    return (/* JSX */);
-  }
-  // ...
-}
-```
+## 4. Verification Process
 
-### B. Styling & Tailwind Classes
-
-**Used AI For**:
-
-- Complex Tailwind class combinations
-- Responsive breakpoint patterns
-- Hover/focus state styling
-
-**Example**:
-
-```javascript
-// AI suggested this gradient overlay pattern
-className =
-  "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent";
-```
-
-### C. Data Fetching Logic
-
-**Used AI For**:
-
-- API route structure
-- useEffect patterns for client-side fetching
-- Loading state management
-
-**Example**:
-
-```javascript
-// AI generated the fetch pattern
-useEffect(() => {
-  fetch("/api/news")
-    .then((res) => res.json())
-    .then((data) => setArticles(data))
-    .finally(() => setLoading(false));
-}, []);
-```
-
-### D. Mock Data Generation
-
-**Used AI For**:
-
-- Hindi article content
-- Realistic news headlines
-- Category distribution
-
-### E. Jest Test Setup
-
-**Used AI For**:
-
-- Jest configuration
-- Mock fetch setup
-- Basic test patterns
-
-## 2. Where AI Suggestions Were Wrong/Suboptimal
-
-### Issue 1: Pages Router vs App Router Confusion
-
-**AI Suggested**: Creating files in both `pages/` and `app/` directories.
-**Problem**: Caused route conflicts in Next.js 13+.
-**Correction**: Removed `pages/` entirely, used only App Router.
-
-### Issue 2: Image Component Configuration
-
-**AI Suggested**: Using `<img>` tag directly.
-**Problem**: Missing Next.js Image optimization.
-**Correction**: Switched to `next/image` with proper domain config:
-
-```javascript
-// Corrected:
-import Image from "next/image";
-<Image src={img} alt={title} fill className="object-cover" />;
-```
-
-### Issue 3: Import Path Errors
-
-**AI Suggested**: Relative paths like `./data/articles.json` from app/ directory.
-**Problem**: Path resolution failed in Next.js App Router.
-**Correction**: Used `../data/articles.json` (going up to root level).
-
-### Issue 4: Client Component Marking
-
-**AI Suggested**: Not including "use client" directive.
-**Problem**: useState/useEffect failed in Server Components.
-**Correction**: Added `"use client"` at top of interactive components.
-
-### Issue 5: Hardcoded Zodiac Unicode
-
-**AI Suggested**: Using emoji zodiac symbols (🐏, 🐂).
-**Problem**: Inconsistent rendering across devices.
-**Correction**: Used Unicode symbols (♈, ♉) for reliability.
-
-## 3. How AI Suggestions Were Verified/Corrected
-
-### Verification Process:
-
-1. **Manual Testing**: Ran `npm run dev` after each AI suggestion
-2. **Error Reading**: Carefully read Next.js error messages
-3. **Documentation Check**: Verified against Next.js 13 docs
-4. **Visual Comparison**: Compared output with LiveHindustan screenshots
-5. **Console Inspection**: Checked browser devtools for warnings
-
-### Correction Examples:
-
-```javascript
-// AI Original (Wrong):
-// pages/index.js
-export default function Home() { ... }
-
-// Corrected by me:
-// app/page.js (App Router)
-export default function Home() { ... }
-```
-
-```javascript
-// AI Original (Missing directive):
-export default function Nav() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  ...
-}
-
-// Corrected by me:
-"use client";  // Added this line
-export default function Nav() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  ...
-}
-```
-
-## 4. Custom Modifications Beyond AI
-
-### A. LiveHindustan-Specific Styling
-
-- Matched exact red color (#dc2626)
-- Replicated Hindi logo design with bordered "हि"
-- Category tabs with scroll arrows
-
-### B. Layout Fine-Tuning
-
-- `justify-between` for even article distribution
-- Custom `scrollbar-hide` utility
-- Exact grid ratios (3:2 for category sections)
-
-### C. Hindi Localization
-
-- Date formatting with `hi-IN` locale
-- All UI text in Hindi
-- RTL-aware spacing considerations
-
-### D. Component Variants
-
-- Created 3 Card variants (default, horizontal, small)
-- Multiple skeleton loading states
-- Responsive breakpoint customization
-
-### E. SEO Implementation
-
-- JSON-LD schema for homepage
-- Semantic HTML structure
-- Meta tags in layout.js
-
-### F. Edge Case Handling
-
-- Comprehensive null checks
-- Fallback UI for empty states
-- Error boundary patterns
+1. `npm run dev` after each change
+2. Read error messages carefully
+3. Check Next.js 13 documentation
+4. Compare with LiveHindustan screenshots
+5. Browser devtools inspection
 
 ---
 
-## Summary Statistics
+## Summary
 
-| Metric                 | Value                    |
-| ---------------------- | ------------------------ |
-| Total Components       | 14                       |
-| Lines of Code          | ~2000+                   |
-| Test Files             | 1                        |
-| Data Articles          | 20                       |
-| Responsive Breakpoints | 3 (sm, md, lg)           |
-| AI-Assisted Parts      | ~60% initial, ~40% final |
-| Manual Corrections     | ~15 significant changes  |
+| Metric      | Value        |
+| ----------- | ------------ |
+| Components  | 14           |
+| Articles    | 20           |
+| Test Files  | 1            |
+| AI-Assisted | ~60% initial |
+| Manual Work | ~40% final   |
 
 ---
 
-_Documentation created on November 29, 2025_
-_Project: LiveHindustan Clone - Next.js Implementation_
+_Documentation: November 29, 2025 | LiveHindustan Clone - Next.js_
